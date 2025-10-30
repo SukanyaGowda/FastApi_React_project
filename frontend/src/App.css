@@ -1,0 +1,38 @@
+.details-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.details-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.delete-button {
+  background-color: #dc2626;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #b91c1c;
+}
+
+.form-button.secondary {
+  background-color: #6b7280;
+}
+
+.form-button.secondary:hover {
+  background-color: #4b5563;
+}
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
