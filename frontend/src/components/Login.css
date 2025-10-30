@@ -1,0 +1,251 @@
+/* Unique UI Design for Registration and Login Pages (Shared Styles) */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary-color: #6a00a8; /* Deep Violet */
+  --secondary-color: #a727db; /* Lighter Violet */
+  --accent-color: #00d4ff; /* Bright Cyan */
+  --text-color-light: #f0e6fa;
+  --text-color-dark: #333;
+  --card-bg-transparent: rgba(255, 255, 255, 0.15); /* Frosted Glass */
+  --card-border-transparent: rgba(255, 255, 255, 0.2);
+  --error-bg: rgba(255, 0, 0, 0.2);
+  --error-text: #ffdddd;
+}
+
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden; 
+}
+
+/* Main Container (Used for both Login and Register) */
+.unique-register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* Dark cosmic gradient */
+}
+
+/* Animated Backdrop */
+.unique-register-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 0, 255, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.3) 0%, transparent 50%);
+  background-size: 200% 200%; 
+  animation: moveGradient 15s ease infinite alternate;
+}
+
+@keyframes moveGradient {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* Form Card - Glassmorphism Effect */
+.unique-register-form-card {
+  position: relative;
+  z-index: 10;
+  background: var(--card-bg-transparent);
+  border: 1px solid var(--card-border-transparent);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 450px;
+  backdrop-filter: blur(15px); /* The magic behind glassmorphism */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  color: var(--text-color-light);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Form Card Pseudo-elements for extra glow/depth */
+.unique-register-form-card::before,
+.unique-register-form-card::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+    opacity: 0.3;
+    filter: blur(25px);
+    z-index: -1;
+    animation: pulseGlow 5s infinite ease-in-out alternate;
+}
+
+.unique-register-form-card::before {
+    top: -20px;
+    left: -20px;
+}
+
+.unique-register-form-card::after {
+    bottom: -20px;
+    right: -20px;
+    animation-delay: 2s;
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(0.8); opacity: 0.2; }
+    50% { transform: scale(1.2); opacity: 0.4; }
+    100% { transform: scale(0.8); opacity: 0.2; }
+}
+
+
+/* Title and Subtitle */
+.unique-register-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.unique-register-title span {
+  font-size: 1em; 
+  margin-right: 5px;
+}
+
+.unique-register-subtitle {
+  font-size: 0.95em;
+  color: var(--text-color-light);
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+/* Input Group */
+.unique-input-group {
+  text-align: left;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.unique-input-group label {
+  display: block;
+  font-size: 0.85em;
+  color: var(--text-color-light);
+  margin-bottom: 8px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.unique-input-field {
+  width: calc(100% - 20px);
+  padding: 12px 10px;
+  background: rgba(255, 255, 255, 0.08); 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: var(--text-color-light);
+  font-size: 1em;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.unique-input-field::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.unique-input-field:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px var(--accent-color), inset 0 2px 5px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.15); 
+}
+
+/* Error Message */
+.unique-error-message {
+  background: var(--error-bg);
+  color: var(--error-text);
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  font-size: 0.9em;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.2);
+}
+
+/* Submit Button - Unique Look */
+.unique-submit-button {
+  width: 100%;
+  padding: 15px 20px;
+  background: linear-gradient(45deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.1em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3), 0 0 0 0 var(--accent-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.unique-submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 0 5px rgba(0, 212, 255, 0.2); 
+  background: linear-gradient(45deg, var(--primary-color) 0%, var(--secondary-color) 100%); 
+}
+
+/* Button hover ripple effect */
+.unique-submit-button:hover::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: buttonRipple 0.5s ease-out forwards;
+}
+
+@keyframes buttonRipple {
+    from {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    to {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+    }
+}
+
+
+/* Login/Register Prompt Link */
+.unique-login-prompt {
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: var(--text-color-light);
+  opacity: 0.8;
+}
+
+.unique-login-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  border-bottom: 1px solid transparent; 
+}
+
+.unique-login-link:hover {
+  color: white;
+  border-color: var(--accent-color); 
+}

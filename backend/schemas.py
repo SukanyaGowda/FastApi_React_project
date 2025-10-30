@@ -6,7 +6,7 @@ class ProductBase(BaseModel):
     description:str | None=None
     price:float
     quantity:int
-
+    image_url: str | None=None  # ✅ New field added
 
 class ProductCreate(ProductBase):
     pass

@@ -1,0 +1,322 @@
+/* Products.css - Consolidated Final Design (Products Page) */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+/* --- Variable Definitions --- */
+:root {
+    --primary-color: #0d9488; /* Teal/Emerald for accent */
+    --secondary-color: #10b981; /* Lighter Emerald for price */
+    --background-light: #f3f4f6; /* Soft Light Gray background */
+    --text-dark: #1f2937;
+    --text-medium: #4b5563;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* --- Page Layout --- */
+
+.product-page-container {
+    min-height: 100vh;
+    padding: 3rem 1rem;
+    background-color: var(--background-light);
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- Header & Title --- */
+
+.product-header-section {
+    max-width: 1200px;
+    margin: 0 auto 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically aligns title and button */
+}
+
+.product-main-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.05em;
+    display: flex;
+    align-items: center;
+}
+
+.product-main-title span {
+    font-size: 1.2em;
+    margin-right: 0.75rem;
+    color: var(--primary-color);
+}
+
+/* --- Error Message --- */
+.product-error-message {
+    max-width: 1200px;
+    margin: 0 auto 1.5rem;
+    padding: 1rem;
+    background-color: #fee2e2;
+    border: 1px solid #fca5a5;
+    color: #b91c1c;
+    border-radius: 0.5rem;
+    font-weight: 600;
+}
+
+/* --- Product Grid --- */
+
+.product-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* --- Product Card --- */
+
+.product-card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hover Effect: Lifts the card and adds a vibrant glow */
+.product-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 0 0 4px rgba(13, 148, 136, 0.2); 
+}
+
+/* Image Display Styles (The fix for your image layout) */
+.card-image-container {
+    /* Extends image to card edges at the top */
+    margin: -1.5rem -1.5rem 1rem -1.5rem; 
+    height: 300px; 
+    overflow: hidden;
+    border-top-left-radius: 12px; 
+    border-top-right-radius: 12px; 
+    background-color: #f8f8f8; 
+    position: relative;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the area */
+    transition: transform 0.3s ease; /* Smooth zoom on hover */
+}
+
+.product-card:hover .card-image {
+    transform: scale(1.05); /* Slight zoom */
+}
+
+/* Optional Gradient Overlay */
+.card-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0,0,0,0.05) 0%, transparent 50%);
+    pointer-events: none;
+    opacity: 0.8;
+}
+/* End Image Styles */
+
+
+.card-info { /* New wrapper to enable click for navigation */
+    cursor: pointer; 
+    flex-grow: 1; 
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    margin-bottom: 1.25rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    min-height: 4.5em; 
+}
+
+/* --- Card Footer & CRUD Buttons --- */
+
+.card-footer {
+    padding-top: 1rem;
+    border-top: 1px solid #f3f4f6;
+    margin-top: auto;
+    /* Grid layout for price, quantity, and actions */
+    display: grid;
+    grid-template-areas: 
+        "quantity price"
+        "actions actions";
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.card-quantity {
+    grid-area: quantity;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-medium);
+}
+.card-price {
+    grid-area: price;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--secondary-color);
+    text-align: right;
+}
+.card-actions {
+    grid-area: actions;
+    display: flex;
+    justify-content: flex-end; /* Push buttons to the right */
+    gap: 0.5rem;
+    margin-top: 0.5rem; /* Space between price/qty and buttons */
+}
+
+.button-edit, .button-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0.4rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.button-edit:hover { background-color: #e0f2f1; } 
+.button-delete:hover { background-color: #fce7f3; } 
+
+.button-create-new {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 148, 136, 0.3);
+}
+
+.button-create-new:hover {
+    background-color: #0c7b70;
+    transform: translateY(-2px);
+}
+
+/* --- MODAL STYLING --- */
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-width: 500px;
+}
+
+.modal-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.input-group { margin-bottom: 1rem; }
+.input-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-medium);
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+.input-group input:focus, .input-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.2);
+}
+
+.input-group-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.input-group-row .input-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.button-save {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-save:hover { background-color: #0e996f; }
+
+.button-cancel {
+    background-color: #e5e7eb;
+    color: var(--text-dark);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-cancel:hover { background-color: #d1d5db; }

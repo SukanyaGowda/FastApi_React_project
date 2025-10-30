@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../api/api";
+import "./Register.css"; // CHANGED FROM RegisterUnique.css
 
 function Register() {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -25,38 +26,60 @@ function Register() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-2xl shadow-lg w-80"
-      >
-        <h2 className="text-2xl font-semibold mb-4 text-center">Register</h2>
-        <input
-          name="username"
-          placeholder="Username"
-          className="border w-full p-2 rounded mb-3"
-          value={form.username}
-          onChange={handleChange}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          className="border w-full p-2 rounded mb-3"
-          value={form.password}
-          onChange={handleChange}
-        />
-        {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
-        <button className="bg-green-500 w-full text-white p-2 rounded hover:bg-green-600">
-          Register
+    <div className="unique-register-container">
+      <div className="unique-register-backdrop"></div> 
+
+      <form onSubmit={handleSubmit} className="unique-register-form-card">
+        <h2 className="unique-register-title">
+          <span role="img" aria-label="sprout">🌱</span> Create Your Account
+        </h2>
+        <p className="unique-register-subtitle">
+          Join our community and discover amazing products.
+        </p>
+
+        <div className="unique-input-group">
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Choose a username"
+            value={form.username}
+            onChange={handleChange}
+            className="unique-input-field"
+          />
+        </div>
+
+        <div className="unique-input-group">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Create a strong password"
+            value={form.password}
+            onChange={handleChange}
+            className="unique-input-field"
+          />
+        </div>
+
+        {error && (
+          <div className="unique-error-message">
+            {error}
+          </div>
+        )}
+
+        <button type="submit" className="unique-submit-button">
+          Sign Up Now
         </button>
-        <p className="text-center mt-3 text-sm">
+
+        <p className="unique-login-prompt">
           Already have an account?{" "}
           <span
             onClick={() => navigate("/login")}
-            className="text-blue-500 cursor-pointer"
+            className="unique-login-link"
           >
-            Login
+            Login here
           </span>
         </p>
       </form>

@@ -9,6 +9,7 @@ class Product(Base):
     description = Column(String)
     price = Column(Float)
     quantity = Column(Integer)
+    image_url=Column(String,nullable=False)
 
 
 class User(Base):
