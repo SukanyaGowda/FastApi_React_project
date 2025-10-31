@@ -1,216 +1,131 @@
-/* --- NEW MODAL & BUTTON STYLES FOR CRUD --- */
+/* -------------------- LOGIN & REGISTER PAGE STYLES -------------------- */
 
-/* Create/New Button */
-.button-create-new {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 0.6rem 1.2rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s;
-    box-shadow: 0 4px 6px rgba(0, 148, 136, 0.3);
+.unique-register-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0d9488, #10b981);
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
 }
 
-.button-create-new:hover {
-    background-color: #0c7b70;
-    transform: translateY(-2px);
+.unique-register-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  z-index: 1;
 }
 
-/* Card Actions */
-.card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 1rem;
-    border-top: 1px solid #f3f4f6;
-    margin-top: auto;
+.unique-register-form-card {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 420px;
+  animation: fadeIn 0.8s ease;
 }
 
-.card-actions {
-    display: flex;
-    gap: 0.5rem;
+.unique-register-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f766e;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
-.button-edit, .button-delete {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.1rem;
-    padding: 0.4rem;
-    border-radius: 4px;
-    transition: background-color 0.2s;
+.unique-register-subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
 }
 
-.button-edit:hover {
-    background-color: #e0f2f1; /* Light Teal */
+.unique-input-group {
+  margin-bottom: 1.5rem;
 }
 
-.button-delete:hover {
-    background-color: #fce7f3; /* Light Pink/Red */
+.unique-input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #374151;
 }
 
-/* --- MODAL STYLING (Create/Update Form) --- */
-
-.modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+.unique-input-field {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.modal-content {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    width: 90%;
-    max-width: 500px;
+.unique-input-field:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.3);
+  outline: none;
 }
 
-.modal-title {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 0.5rem;
+.unique-error-message {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
-.input-group {
-    margin-bottom: 1rem;
+.unique-submit-button {
+  width: 100%;
+  background-color: #0d9488;
+  color: white;
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
-.input-group label {
-    display: block;
-    font-weight: 600;
-    color: var(--text-medium);
-    margin-bottom: 0.3rem;
-    font-size: 0.9rem;
+.unique-submit-button:hover {
+  background-color: #0f766e;
+  transform: translateY(-2px);
 }
 
-.input-group input, .input-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: border-color 0.3s;
+.unique-login-prompt {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #374151;
 }
 
-.input-group input:focus, .input-group textarea:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.2);
+.unique-login-link {
+  color: #0d9488;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    margin-top: 2rem;
+.unique-login-link:hover {
+  text-decoration: underline;
 }
 
-.button-save {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.button-save:hover {
-    background-color: #0e996f;
-}
-
-.button-cancel {
-    background-color: #e5e7eb;
-    color: var(--text-dark);
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.button-cancel:hover {
-    background-color: #d1d5db;
-}
-
-/* Existing styles from previous response (keep these too) */
-/* --- Variable Definitions --- */
-:root {
-    --primary-color: #0d9488;
-    --secondary-color: #10b981;
-    --background-light: #f3f4f6;
-    --text-dark: #1f2937;
-    --text-medium: #4b5563;
-    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-/* --- Page Layout --- */
-.product-page-container {
-    min-height: 100vh;
-    padding: 3rem 1rem;
-    background-color: var(--background-light);
-    font-family: 'Inter', sans-serif;
-}
-
-/* --- Header (adjusted to accommodate button) --- */
-.product-header-section {
-    max-width: 1200px;
-    margin: 0 auto 2.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 2px solid var(--primary-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.product-main-title { /* ... (keep existing styles) */ }
-.product-main-title span { /* ... (keep existing styles) */ }
-.product-error-message { /* ... (keep existing styles) */ }
-.product-grid { /* ... (keep existing styles) */ }
-
-/* --- Product Card (adjusted structure for actions) --- */
-.product-card {
-    background-color: #ffffff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    border: 1px solid #e5e7eb;
-    display: flex;
-    flex-direction: column;
-}
-
-.product-card:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 0 0 4px rgba(13, 148, 136, 0.2); 
-}
-
-.card-info { /* New wrapper to enable click for navigation */
-    cursor: pointer; 
-    flex-grow: 1; 
-}
-
-.card-title { /* ... (keep existing styles) */ }
-.card-description { /* ... (keep existing styles) */ }
-
-.card-price { /* Adjusted to be part of the footer, not stand-alone */
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: var(--secondary-color);
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

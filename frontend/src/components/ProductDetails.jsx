@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../api/api";
+import "./ProductDetails.css";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -8,19 +9,47 @@ function ProductDetails() {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const res = await getProductById(id);
-      setProduct(res.data);
+      try {
+        const res = await getProductById(id);
+        setProduct(res.data);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
     };
     fetchProduct();
   }, [id]);
 
-  if (!product) return <p className="p-6">Loading...</p>;
+  if (!product) {
+    return (
+      <div className="product-details-loading">
+        <div className="spinner"></div>
+        <p>Loading product details...</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-semibold mb-3">{product.name}</h1>
-      <p>{product.description}</p>
-      <p className="text-xl text-blue-600 mt-2">₹{product.price}</p>
+    <div className="product-details-container">
+      <div className="product-card-detail">
+        <div className="product-image-container">
+          <img
+            src={product.image_url || "https://via.placeholder.com/400x300"}
+            alt={product.name}
+            className="product-detail-image"
+          />
+        </div>
+
+        <div className="product-info-container">
+          <h1 className="product-detail-title">{product.name}</h1>
+          <p className="product-detail-description">{product.description}</p>
+
+          <div className="product-detail-price">₹{product.price}</div>
+
+          <button className="add-to-cart-button">
+            🛒 Add to Cart
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
